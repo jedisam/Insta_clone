@@ -3,7 +3,7 @@ import { FlatList } from "react-native"
 import { Post } from '../Presentation'
 
 export default class PostFeed extends React.Component{
-    _renderPost( {item} ){
+    _renderPost( { item } ){
         return <Post item={item} key={item}/>
     }
     _returnKey(item){

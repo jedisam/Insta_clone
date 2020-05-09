@@ -1,40 +1,38 @@
-import React from "react"
-import {View,Text,StyleSheet} from "react-native"
-import { PostFeed } from './Container'
+import React, {Component} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-export default class InstaClone extends React.Component{
-    render(){
-        return(
-            <View style={styles.container}>
-                <View style = {styles.statusBar} />
-                <View style={styles.topNav}>
-                    <Text style={styles.InstaText}>Instagram</Text>
-                </View>           
-                <PostFeed />
-            </View>
-        )
-    }
+import {MainFeed, Login} from './screens/';
+
+const Stack = createStackNavigator ();
+
+export default class InstaClone extends Component {
+
+  createHomeStack = () =>(
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
+        }}
+      >
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="MainFeed" component={MainFeed} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+
+  render () {
+    return (
+      
+      this.createHomeStack()
+     
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-    statusBar:{
-        height:24,
-        backgroundColor:'rgb(155, 157, 160)'
-    },
-    container:{
-        flex:1
-    },
-    topNav:{
-        backgroundColor:'rgb(250,250,250)',
-        height:56,
-        borderBottomWidth:StyleSheet.hairlineWidth,
-        borderBottomColor:'rgb(233,233,233)',
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    InstaText:{
-        fontSize:22,
-        fontStyle:'italic'
-    },
-    
-})
+const styles = StyleSheet.create ({
+  container: {
+    flex: 1,
+  },
+});
