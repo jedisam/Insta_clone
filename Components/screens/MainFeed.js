@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     topNav:{
         backgroundColor:'rgb(250,250,250)',
-        height:56,
+        height:50,
         borderBottomWidth:StyleSheet.hairlineWidth,
         borderBottomColor:'rgb(233,233,233)',
         justifyContent:'center',

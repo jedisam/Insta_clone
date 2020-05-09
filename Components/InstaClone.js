@@ -2,31 +2,44 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import {MainFeed, Login} from './screens/';
+import {MainFeed, Login, Profile, Camera} from './screens/';
 
 const Stack = createStackNavigator ();
+const BottomTab = createBottomTabNavigator();
 
 export default class InstaClone extends Component {
 
   createHomeStack = () =>(
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false
-        }}
-      >
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="MainFeed" component={MainFeed} />
-      </Stack.Navigator>
-    </NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}
+        >
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Bottom Tabs" children={this.createBottomTab} />
+        </Stack.Navigator>
+      </NavigationContainer>
   )
+  
+  createBottomTab = (props) => {
+    return (
+      <BottomTab.Navigator>
+        <BottomTab.Screen name="Feed"  component={MainFeed} />
+        <BottomTab.Screen name="Camera" component={Camera}  />
+        <BottomTab.Screen name="Profile" component={Profile}  />
+      </BottomTab.Navigator>
+    );
+  };
+
 
   render () {
     return (
       
-      this.createHomeStack()
-     
+        this.createHomeStack()
+      
     );
   }
 }

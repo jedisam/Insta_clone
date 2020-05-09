@@ -57,7 +57,8 @@ export default class Post extends React.Component{
                 </TouchableOpacity>
                 <View style={styles.iconBar}>
                     <Image
-                        style={{height:40,width:40,margin:6,tintColor:heartIconColor}}
+                        resizeMode="contain"
+                        style={{height:37,width:37,margin:6,tintColor:heartIconColor}}
                         source={config.images.heartIcon}
                     />
                      <Image
@@ -96,15 +97,8 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         justifyContent:'space-between'
     },
-    diamond:{
-        borderRadius:40,
-    },
-    drawer:{
-       marginBottom:27
-      
-    },
-    iconBar:{
-        height:50,
+      iconBar:{
+        height:40,
         width:100+'%',
         borderBottomWidth:StyleSheet.hairlineWidth,
         borderTopWidth:StyleSheet.hairlineWidth,
@@ -117,7 +111,7 @@ const styles = StyleSheet.create({
         borderBottomWidth:StyleSheet.hairlineWidth,
         borderTopWidth:StyleSheet.hairlineWidth,
         borderColor:'rgb(233,233,233)',
-        height:45,
+        height:37,
         flexDirection:'row',
         alignItems:'center',
         
