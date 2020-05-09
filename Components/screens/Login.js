@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Button, StyleSheet } from "react-native";
 
 export default ({ navigation }) => {
   return (
-    <TouchableOpacity
+    <View
       style={{
         height: 100 + "%",
         width: 100 + "%",
@@ -11,11 +11,30 @@ export default ({ navigation }) => {
         justifyContent: "center",
         alignItems: "center",
       }}
-      onPress={() => {
-        navigation.navigate("Bottom Tabs");
-      }}
+      
     >
       <Text> LOGIN PAGE </Text>
-    </TouchableOpacity>
+      <Button  title="Login" onPress={() => {
+        navigation.navigate("Bottom Tabs");
+      }}  />
+      <View style={styles.btnContainer}>
+      <Text style={styles.btn}>Don't have account?</Text>
+      <Button  title="Sign Up"   onPress={() => {
+        navigation.navigate("Register");
+      }}   />
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  btnContainer:{
+    marginTop: 100,
+    display:'flex',
+    flexDirection: 'row',
+  },
+  btn:{
+    marginHorizontal: 20,
+    marginTop:5
+  }
+})

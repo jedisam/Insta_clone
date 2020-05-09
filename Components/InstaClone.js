@@ -4,9 +4,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import {MainFeed, Login, Profile, Camera} from './screens/';
+import {MainFeed, Login, Profile, Camera, Register} from './screens/';
 
 const Stack = createStackNavigator ();
+const IntroStack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
 export default class InstaClone extends Component {
@@ -18,11 +19,20 @@ export default class InstaClone extends Component {
             headerShown: false
           }}
         >
-          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="PreLoad" children={this.IntroStack} />
           <Stack.Screen name="Bottom Tabs" children={this.createBottomTab} />
         </Stack.Navigator>
       </NavigationContainer>
   )
+
+  IntroStack = () =>{
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
+      </Stack.Navigator>
+    )
+  }
   
   createBottomTab = (props) => {
     return (
