@@ -53,28 +53,25 @@ export class Register extends Component {
       return false;
     } else {
       // alert (JSON.stringify (this.state.credentials));
-      return (
-        fetch ('http://196.188.240.255:9000/signup/', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify ({
-            username: this.state.credentials.username,
-            password: this.state.credentials.password,
-          }),
-        })
-          .then (res => res.json)
-          // .then (res => alert (res))
-          .catch (err => alert (err.message))
-      );
+      return fetch ('https://d230aaa8.ngrok.io/signup', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify ({
+          username: this.state.credentials.username,
+          password: this.state.credentials.password,
+        }),
+      })
+        .then (res => res.json ())
+        .then (this.props.navigation.navigate ('Bottom Tabs'))
+        .catch (err => alert (err.message));
     }
   }
   render () {
     return (
       <View
-        // onPress={() => this.register()}
         style={{
           height: 100 + '%',
           width: 100 + '%',
@@ -87,7 +84,6 @@ export class Register extends Component {
         <Text> Register PAGE </Text>
         <Hoshi
           value={this.state.credentials.username}
-          autoCapitalize="none"
           autoCorrect={false}
           onChangeText={name => this.handleChange (name, 'username')}
           onBlur={() => this.handleError ('Username')}
@@ -114,7 +110,26 @@ export class Register extends Component {
               {this.state.passwordError}
             </Text>
           : <View />}
-        <Button title="Register" onPress={() => this.handleRegister ()} />
+        <TouchableOpacity
+          onPress={() => this.handleRegister ()}
+          style={{
+            padding: 10,
+            backgroundColor: '#9ddbf5',
+            width: 100 + '%',
+            borderRadius: 10,
+          }}
+        >
+          <Text
+            style={{
+              textAlign: 'center',
+              color: '#fff',
+              fontSize: 20,
+              fontWeight: 'bold',
+            }}
+          >
+            Sign up
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
