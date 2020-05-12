@@ -53,7 +53,7 @@ export class Register extends Component {
       return false;
     } else {
       // alert (JSON.stringify (this.state.credentials));
-      return fetch ('https://d230aaa8.ngrok.io/signup', {
+      return fetch ('http://ecd22a26.ngrok.io/signup', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

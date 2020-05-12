@@ -26,7 +26,11 @@ export default class InstaClone extends Component {
 
   IntroStack = () => {
     return (
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>

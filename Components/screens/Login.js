@@ -12,6 +12,8 @@ export default class Login extends Component {
       },
       usernameError: '',
       passwordError: '',
+      status: '',
+      errLogin: '',
     };
   }
   handleChange (text, field) {
@@ -52,8 +54,8 @@ export default class Login extends Component {
     if (this.state.usernameError !== '' || this.state.passwordError !== '') {
       return false;
     } else {
-      alert ('hey');
-      fetch ('https://d230aaa8.ngrok.io/login', {
+      this.setState ({errLogin: ''});
+      await fetch ('http://ecd22a26.ngrok.io/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -64,10 +66,15 @@ export default class Login extends Component {
           password: this.state.credentials.password,
         }),
       })
-        .then (res => res.json ())
-        .then (res => alert (JSON.stringify (res)))
-        // .then (this.props.navigation.navigate ('Bottom Tabs'))
-        .catch (err => console.log ('Thissssssss', err));
+        .then (res => res.json (), err=>alert(err))
+        .then (res => {
+          this.setState ({status: res})
+          if(this.state.status==='success'){
+            this.props.navigation.navigate ('Bottom Tabs')
+          } else {
+            return false
+          }
+        },err=>alert('Incorrect password or Username  '))
     }
   }
 
@@ -84,6 +91,11 @@ export default class Login extends Component {
         }}
       >
         <Text> Login PAGE </Text>
+        {this.state.errLogin
+          ? <Text style={{color: 'red'}}>
+              {this.state.errLogin} {this.state.status}
+            </Text>
+          : <View />}
         <Hoshi
           value={this.state.credentials.username}
           autoCorrect={false}
