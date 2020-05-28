@@ -53,20 +53,32 @@ export class Register extends Component {
       return false;
     } else {
       // alert (JSON.stringify (this.state.credentials));
-      return fetch ('http://ecd22a26.ngrok.io/signup', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify ({
-          username: this.state.credentials.username,
-          password: this.state.credentials.password,
-        }),
-      })
-        .then (res => res.json ())
-        .then (this.props.navigation.navigate ('Bottom Tabs'))
-        .catch (err => alert (err.message));
+
+      try {
+
+        const res =  await fetch ('https://68215d20.ngrok.io/signup', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify ({
+            username: this.state.credentials.username,
+            password: this.state.credentials.password,
+          }),
+        })
+
+        alert(JSON.stringify(res.data))
+        console.log('result',JSON.stringify(res))
+
+      } catch(err) {
+        alert('errrrr',err.message)
+      }
+     
+      
+        // .then (res => res.json ())
+        // .then (this.props.navigation.navigate ('Bottom Tabs'))
+        // .catch (err => alert (err.message));
     }
   }
   render () {

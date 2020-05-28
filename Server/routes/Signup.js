@@ -29,7 +29,7 @@ route.post("/signup", (req, res) => {
             console.log(err);
             return;
           } else {
-            res.json("registered from Server!");
+            res.  send("SUCCESSSSSSSS!");
           }
         });
       }
@@ -41,7 +41,7 @@ route.post("/login", passport.authenticate("local"), (req, res) => {
   console.log("U came here!")
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
-  res.json("success");
+  res.json("SUCCESSSSSSS");
   // res.redirect("/users/" + req.user.username);
 });
 
